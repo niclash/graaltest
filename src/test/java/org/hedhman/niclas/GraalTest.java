@@ -1,13 +1,15 @@
-package org.example;
+package org.hedhman.niclas;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.HostAccess;
 import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
+import org.junit.jupiter.api.Test;
 
-public class Main
+public class GraalTest
 {
-    public static void main( String[] args )
+    @Test
+    void testPython()
         throws Exception
     {
         Source compiledScript = Source.newBuilder( "python", SCRIPT, "test" ).build();
@@ -16,7 +18,7 @@ public class Main
         System.out.println( v );
     }
 
-    private static Context createContext()
+    Context createContext()
     {
         HostAccess accessToPublic = HostAccess.newBuilder()
             .allowPublicAccess( true )
@@ -26,6 +28,5 @@ public class Main
             .build();
     }
 
-    private static final String SCRIPT =
-        "'doesn't matter'\n";
+    final String SCRIPT = "'doesn't matter'\n";
 }
